@@ -7,16 +7,17 @@ defmodule RealTimeCommentsWeb.PostComponent do
 
   attr :title, :string, required: true
   attr :body, :string, required: true
+  attr :datetime, :string, required: true
 
   def post(assigns) do
     ~H"""
       <article class="flex max-w-xl flex-col items-start justify-between">
         <div class="flex items-center gap-x-4 text-xs">
-          <time datetime="2020-03-16" class="text-gray-500">Mar 16, 2020</time>
+          <%= date_time_element(assigns) %>
         </div>
         <div class="group relative">
           <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
-            <a href="#">
+            <a href={~p"/posts/#{@id}"}>
               <span class="absolute inset-0"></span>
               <%= @title %>
             </a>
@@ -24,6 +25,14 @@ defmodule RealTimeCommentsWeb.PostComponent do
           <p class="mt-5 line-clamp-3 text-sm leading-6 text-gray-600 truncate"><%= @body %></p>
         </div>
       </article>
+    """
+  end
+
+  defp date_time_element(assigns) do
+    assigns = assign(assigns, :formatted_datetime, Calendar.strftime(assigns[:datetime], "%B %d, %Y, %H:%M:%S"))
+
+    ~H"""
+      <time datetime={@formatted_datetime} class="text-gray-500"><%= @formatted_datetime %></time>
     """
   end
 end
