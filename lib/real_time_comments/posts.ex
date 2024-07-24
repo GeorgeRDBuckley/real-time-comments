@@ -18,5 +18,6 @@ defmodule RealTimeComments.Posts do
 
   def get_post!(id) do
     Repo.get!(Post, id)
+    |> Repo.preload(:comments)
   end
 end

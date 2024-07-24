@@ -5,6 +5,7 @@ defmodule RealTimeCommentsWeb.PostComponent do
 
   use RealTimeCommentsWeb, :html
 
+  attr :id, :integer, required: true
   attr :title, :string, required: true
   attr :body, :string, required: true
   attr :datetime, :string, required: true
