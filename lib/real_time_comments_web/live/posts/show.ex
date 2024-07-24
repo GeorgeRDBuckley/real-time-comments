@@ -30,12 +30,12 @@ defmodule RealTimeCommentsWeb.PostsLive.Show do
             <div class="flex justify-between items-center mb-6">
               <h2 class="text-lg lg:text-2xl font-bold text-gray-900">Comments</h2>
             </div>
-            <.form for={@form} phx-change="validate" phx-submit="save">
+            <.form id="comment-form" for={@form} phx-change="validate" phx-submit="save">
               <div class="my-10 space-y-4 bg-white">
-                <label for="name" class="sr-only">Your name</label>
+                <label for="name">Your name</label>
                 <.input type="text" field={@form[:name]} placeholder={"Joe Bloggs"} />
 
-                <label for="name" class="sr-only">Your comment</label>
+                <label for="body">Your comment</label>
                 <.input type="textarea" field={@form[:body]} placeholder={"Leave a comment..."} />
 
                 <button type="submit"

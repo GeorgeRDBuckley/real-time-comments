@@ -18,9 +18,4 @@ defmodule RealTimeCommentsWeb.CommentChannel do
     broadcast(socket, "CREATED_COMMENT", payload)
     {:noreply, socket}
   end
-
-  # Add authorization logic here as required.
-  defp authorized?(_payload) do
-    true
-  end
 end
