@@ -6,6 +6,8 @@ defmodule RealTimeComments.Posts.Post do
     field :title, :string
     field :body, :string
 
+    has_many :comments, RealTimeComments.Comments.Comment
+
     timestamps(type: :utc_datetime)
   end
 

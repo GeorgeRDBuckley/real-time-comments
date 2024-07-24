@@ -1,8 +1,8 @@
 defmodule RealTimeComments.Posts do
+  import Ecto.Query, warn: false
+
   alias RealTimeComments.Repo
   alias RealTimeComments.Posts.Post
-
-  import Ecto.Query, warn: false
 
   def create_post(attrs) do
     %Post{}
