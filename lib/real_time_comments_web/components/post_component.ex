@@ -23,14 +23,14 @@ defmodule RealTimeCommentsWeb.PostComponent do
               <%= @title %>
             </a>
           </h3>
-          <p class="mt-5 line-clamp-3 text-sm leading-6 text-gray-600 truncate"><%= @body %></p>
+          <p class="mt-5 text-sm leading-6 text-gray-600"><%= @body %></p>
         </div>
       </article>
     """
   end
 
   defp date_time_element(assigns) do
-    assigns = assign(assigns, :formatted_datetime, Calendar.strftime(assigns[:datetime], "%B %d, %Y, %H:%M:%S"))
+    assigns = assign(assigns, :formatted_datetime, Calendar.strftime(assigns[:datetime], "%B %d, %Y - %H:%M:%S"))
 
     ~H"""
       <time datetime={@formatted_datetime} class="text-gray-500"><%= @formatted_datetime %></time>

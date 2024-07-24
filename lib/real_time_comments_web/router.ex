@@ -18,7 +18,7 @@ defmodule RealTimeCommentsWeb.Router do
     pipe_through :browser
 
     get "/", PostsController, :index
-    get "/posts/:id", PostsController, :show
+    live "/posts/:id", PostsLive.Show
   end
 
   # Other scopes may use custom stacks.

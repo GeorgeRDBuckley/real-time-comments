@@ -19,4 +19,8 @@ defmodule RealTimeComments.Comments do
     |> Comment.put_post(post)
     |> Repo.insert()
   end
+
+  def change_comment(%Comment{} = comment, attrs \\ %{}) do
+    Comment.changeset(comment, attrs)
+  end
 end

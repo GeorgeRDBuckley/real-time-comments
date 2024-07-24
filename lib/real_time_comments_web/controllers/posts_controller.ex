@@ -10,14 +10,4 @@ defmodule RealTimeCommentsWeb.PostsController do
     |> assign(:posts, posts)
     |> render()
   end
-
-  def show(conn, %{"id" => id}) do
-    post = Posts.get_post!(id)
-    comments = post.comments
-
-    conn
-    |> assign(:post, post)
-    |> assign(:comments, comments)
-    |> render()
-  end
 end
