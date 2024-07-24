@@ -44,8 +44,8 @@ defmodule RealTimeCommentsWeb.PostsLive.Show do
                 </button>
               </div>
             </.form>
-            <div :for={comment <- @comments}>
-              <RealTimeCommentsWeb.CommentComponent.comment name={comment.name} body={comment.body} datetime={comment.inserted_at} />
+            <div id={"comments"} >
+              <RealTimeCommentsWeb.CommentComponent.comment id={comment.id} name={comment.name} body={comment.body} datetime={comment.inserted_at} :for={comment <- @comments} />
             </div>
           </div>
         </div>
@@ -63,9 +63,10 @@ defmodule RealTimeCommentsWeb.PostsLive.Show do
   end
 
   def handle_event("save", %{"comment" => comment_params} = params, socket) do
-
     case Comments.create_comment(socket.assigns.post, comment_params) do
-      {:ok, _comment} ->
+      {:ok, comment} ->
+        RealTimeCommentsWeb.Endpoint.broadcast("comment:#{socket.assigns.post.id}", "CREATED_COMMENT", Map.merge(comment_params, %{inserted_at: Calendar.strftime(comment.inserted_at, "%B %d, %Y - %H:%M:%S"), comment_id: comment.id}))
+
         {:noreply,
          socket
          |> put_flash(:info, "Comment created")

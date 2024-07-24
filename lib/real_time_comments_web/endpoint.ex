@@ -34,6 +34,10 @@ defmodule RealTimeCommentsWeb.Endpoint do
     plug Phoenix.Ecto.CheckRepoStatus, otp_app: :real_time_comments
   end
 
+  socket "/socket", RealTimeCommentsWeb.UserSocket,
+      websocket: true,
+      longpoll: false
+
   plug Phoenix.LiveDashboard.RequestLogger,
     param_key: "request_logger",
     cookie_key: "request_logger"

@@ -5,13 +5,14 @@ defmodule RealTimeCommentsWeb.CommentComponent do
 
   use RealTimeCommentsWeb, :html
 
+  attr :id, :integer, required: true
   attr :name, :string, required: true
   attr :datetime, :string, required: true
   attr :body, :string, required: true
 
   def comment(assigns) do
     ~H"""
-    <div class="p-6 text-base bg-white rounded-lg border mb-2">
+    <div id={"comment-#{@id}"} class="p-6 text-base bg-white rounded-lg border mb-2">
       <div class="flex justify-between items-center mb-2">
         <div class="flex items-center">
           <p class="inline-flex items-center mr-3 text-sm text-gray-900  font-semibold"><%= @name %></p>
